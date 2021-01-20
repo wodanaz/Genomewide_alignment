@@ -6,8 +6,21 @@ First, the genomes to align should be soft masked with RepeatMasker.
 
 
 ```bash
+# First Step: classifying repeats with RepeatModeler
+
+conda activate /gpfs/fs1/data/wraycompute/phil/urchin_genome/programs/repeat_masker_test
+module load glibc/2.14-gcb01
+
+./RepeatModeler -database Lvar -pa 23
 
 
+
+# Second Step: Masking genome with RepeatMasker using output from RepeatModeler.
+
+conda activate /gpfs/fs1/data/wraycompute/phil/urchin_genome/programs/repeat_masker_test
+module load glibc/2.14-gcb01
+
+./RepeatMasker -engine ncbi -pa 23 -s -lib ./Lvar_repeat_library.fa -gff -dir Lvar_mask_custom -xsmall /data/wraycompute/phil/urchin_genome/assemblies/scaffolds/Lvar_genome.fasta
 
 ```
 
