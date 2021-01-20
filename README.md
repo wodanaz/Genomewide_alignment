@@ -6,7 +6,11 @@ First, the genomes to align should be soft masked with RepeatMasker.
 
 
 ```bash
-# First Step: classifying repeats with RepeatModeler
+# First Step: create a database and classify repeats with RepeatModeler
+
+# <RepeatModelerPath>/BuildDatabase -name elephant elephant.fa
+
+# <RepeatModelerPath>/RepeatModeler -database elephant -pa 20
 
 conda activate /gpfs/fs1/data/wraycompute/phil/urchin_genome/programs/repeat_masker_test
 module load glibc/2.14-gcb01
