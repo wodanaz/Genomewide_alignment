@@ -6,24 +6,29 @@ First, the genomes to align should be soft masked with RepeatMasker.
 
 
 ```bash
-# First Step: create a database and classify repeats with RepeatModeler
-
-# <RepeatModelerPath>/BuildDatabase -name elephant elephant.fa
-
-# <RepeatModelerPath>/RepeatModeler -database elephant -pa 20
-
-conda activate /gpfs/fs1/data/wraycompute/phil/urchin_genome/programs/repeat_masker_test
-module load glibc/2.14-gcb01
-
-./RepeatModeler -database Lvar -pa 23
+nano repeatmodel_lvar.sh
+#!/usr/bin/env bash
+#SBATCH --mail-type=END
+#SBATCH --mail-user=alebesc@gmail.com
+conda activate repeatmasker
+BuildDatabase -name Lvar Lvar.fasta  # to build database
+RepeatModeler -database Lvar -pa 23
 
 
+
+sbatch repeatmodel_lvar.sh
+
+```
 
 # Second Step: Masking genome with RepeatMasker using output from RepeatModeler.
 
-conda activate /gpfs/fs1/data/wraycompute/phil/urchin_genome/programs/repeat_masker_test
-module load glibc/2.14-gcb01
+```bash
+nano repeatmasker_lvar.sh
 
+#!/usr/bin/env bash
+#SBATCH --mail-type=END
+#SBATCH --mail-user=alebesc@gmail.com
+conda activate repeatmasker
 ./RepeatMasker -engine ncbi -pa 23 -s -lib ./Lvar_repeat_library.fa -gff -dir Lvar_mask_custom -xsmall /data/wraycompute/phil/urchin_genome/assemblies/scaffolds/Lvar_genome.fasta
 
 ```
