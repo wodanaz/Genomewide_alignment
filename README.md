@@ -10,6 +10,7 @@ nano repeatmodel_lvar.sh
 #!/usr/bin/env bash
 #SBATCH --mail-type=END
 #SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mem 30000
 conda activate repeatmasker
 BuildDatabase -name Lvar Lvar.fasta  # to build database
 RepeatModeler -database Lvar -pa 23
@@ -17,6 +18,13 @@ RepeatModeler -database Lvar -pa 23
 
 
 sbatch repeatmodel_lvar.sh
+
+
+
+
+# to check the memory allowance 
+sacct -j ID --format=JobID,JobName,ReqMem,MaxRSS,Elapsed  # RAM requested/used!!
+
 
 ```
 
