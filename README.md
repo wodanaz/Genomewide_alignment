@@ -6,22 +6,58 @@ First, the genomes to align should be soft masked with RepeatMasker.
 
 
 ```bash
+
+conda activate repeatmasker
+
+####################### L. var
+
 nano repeatmodel_lvar.sh
 #!/usr/bin/env bash
 #SBATCH --mail-type=END
 #SBATCH --mail-user=alebesc@gmail.com
-#SBATCH --mem 30000
-conda activate repeatmasker
+#SBATCH --mem 40000
 BuildDatabase -name Lvar Lvar.fasta  # to build database
 RepeatModeler -database Lvar -pa 23
 
 
+# Run
 
 sbatch repeatmodel_lvar.sh
 
+####################### H. tub
+
+
+nano repeatmodel_htub.sh
+#!/usr/bin/env bash
+#SBATCH --mail-type=END
+#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mem 35000
+#conda activate repeatmasker
+BuildDatabase -name Htub Htub.fasta  # to build database
+RepeatModeler -database Htub -pa 23
+
+
+sbatch repeatmodel_htub.sh
+
+####################### H. ery
+
+nano repeatmodel_hery.sh 
+#!/usr/bin/env bash
+#SBATCH --mail-type=END
+#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mem 35000
+conda activate repeatmasker
+BuildDatabase -name Hery Hery.fasta  # to build database
+RepeatModeler -database Hery -pa 23
 
 
 
+# run
+
+sbatch repeatmodel_hery.sh 
+
+
+#############################
 # to check the memory allowance 
 sacct -j ID --format=JobID,JobName,ReqMem,MaxRSS,Elapsed  # RAM requested/used!!
 
