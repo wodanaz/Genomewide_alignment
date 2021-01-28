@@ -31,13 +31,51 @@ sacct -j ID --format=JobID,JobName,ReqMem,MaxRSS,Elapsed  # RAM requested/used!!
 # Second Step: Masking genome with RepeatMasker using output from RepeatModeler.
 
 ```bash
-nano repeatmasker_lvar.sh
 
+####################### H. ery
+
+
+mkdir Hery_mask_custom
+
+nano repeatmasker_hery.sh
 #!/usr/bin/env bash
 #SBATCH --mail-type=END
 #SBATCH --mail-user=alebesc@gmail.com
-conda activate repeatmasker
-./RepeatMasker -engine ncbi -pa 23 -s -lib ./Lvar_repeat_library.fa -gff -dir Lvar_mask_custom -xsmall /data/wraycompute/phil/urchin_genome/assemblies/scaffolds/Lvar_genome.fasta
+RepeatMasker -engine ncbi -pa 23 -s -lib Hery-families.fa -gff -dir Hery_mask_custom -xsmall Hery.fasta
+
+# run
+sbatch repeatmasker_hery.sh
+
+
+####################### H. tub
+
+mkdir Htub_mask_custom
+
+nano repeatmasker_htub.sh
+#!/usr/bin/env bash
+#SBATCH --mail-type=END
+#SBATCH --mail-user=alebesc@gmail.com
+RepeatMasker -engine ncbi -pa 23 -s -lib Htub-families.fa -gff -dir Htub_mask_custom -xsmall Htub.fasta
+
+# Run
+
+sbatch repeatmasker_htub.sh
+
+########################## L. var
+
+mkdir Lvar_mask_custom
+
+nano repeatmasker_lvar.sh
+#!/usr/bin/env bash
+#SBATCH --mail-type=END
+#SBATCH --mail-user=alebesc@gmail.com
+RepeatMasker -engine ncbi -pa 23 -s -lib Lvar-families.fa -gff -dir Lvar_mask_custom -xsmall Lvar.fasta
+
+
+# Run
+
+sbatch repeatmasker_lvar.sh
+
 
 ```
 
