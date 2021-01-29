@@ -189,6 +189,10 @@ done
 Second, use msa_split to extraxt fasta files
 
 ```bash
+
+
+bioawk -t -c fastx '{ print $name, $seq }' Hery_genome.fasta.masked | head -n1 | awk -F $'\t' '{print ">" $1 "\n" $2 }' > chr1.urchin.fasta
+
 mkdir query
 
 
