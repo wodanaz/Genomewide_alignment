@@ -153,5 +153,62 @@ cactus --workDir /data/wraycompute/alejo/PS_tests/Genome_alignments/urchins/urch
 
 ```
 
+To extract fasta files from a feature bed file:
+
+1. we need to convert HAL to MAF for each chromosome
+
+
+```bash
+nano 
+#!/usr/bin/env bash
+#SBATCH -J hal2maf
+#SBATCH --mail-type=END
+#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH -N 1
+#SBATCH --mem=4G
+for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 ; do
+hal2maf urchins2.hal urchins2.maf --refGenome He --refSequence $chr;
+done
+
+
+sbatch 
+
+```
+
+
+2. we need to extract fasta using msa_split
+
+First, create features
+```bash
+mkdir features
+for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY ; 
+	do grep -w $chr Hery_adult_peaks.bed  | awk '{print $1 "\t" $2 "\t" $3 }' | sort -k1,1 -k2,2 -V >  features/$chr.feat.bed; 
+done
+```
+
+Second, use msa_split to extraxt fasta files
+
+```bash
+mkdir query
+
+
+nano maf2fasta.sh
+#!/usr/bin/env bash
+#SBATCH -J maf2fasta
+#SBATCH --mail-type=END
+#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH -N 1
+for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY;
+do msa_split $chr.maf --refseq $chr.fa --gap-strip ANY -q --in-format MAF --features /your/test/directory/features/$chr.feat.bed --for-features 
+--out-root/your/test/directory/query/$chr; 
+done
+```
+
+
+
+
+
+
+
 
 
