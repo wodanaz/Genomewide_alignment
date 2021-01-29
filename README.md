@@ -159,7 +159,7 @@ To extract fasta files from a feature bed file:
 
 
 ```bash
-nano 
+nano cactus_hal2maf.sh
 #!/usr/bin/env bash
 #SBATCH -J hal2maf
 #SBATCH --mail-type=END
@@ -171,7 +171,7 @@ hal2maf urchins2.hal urchins2.maf --refGenome He --refSequence $chr;
 done
 
 
-sbatch 
+sbatch cactus_hal2maf.sh
 
 ```
 
@@ -202,6 +202,10 @@ for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 
 do msa_split $chr.maf --refseq $chr.fa --gap-strip ANY -q --in-format MAF --features /your/test/directory/features/$chr.feat.bed --for-features 
 --out-root/your/test/directory/query/$chr; 
 done
+
+
+
+sbatch maf2fasta.sh
 ```
 
 
