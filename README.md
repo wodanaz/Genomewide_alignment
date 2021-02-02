@@ -194,6 +194,13 @@ Second, use msa_split to extraxt fasta files
 
 awk '/^>chr/ {OUT=substr($0,2) ".fa";print " ">OUT}; OUT{print >OUT}' Hery_genome.fasta.masked
 
+# Obtain a genome size file
+module load samtools
+samtools faidx Hery_genome.fasta.masked
+awk '{print $1 "\t" $2 }' Hery_genome.fasta.masked.fai > sizes.genome
+
+
+
 
 mkdir query
 
