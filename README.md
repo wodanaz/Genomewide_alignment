@@ -115,9 +115,10 @@ sbatch repeatmasker_lvar.sh
 
 ```
 
-# Third Step: Create urchin_seqfile.txt file with masked genomes.
+# Third Step: Initialize Progressive Cactus to make genome wide alignments
 
-the \* simbolizes the genomes are reference quality
+Create urchin_seqfile.txt file with masked genomes.
+The \* simbolizes the genomes are reference quality
 
 ```bash
 nano urchin_seqfile.txt
