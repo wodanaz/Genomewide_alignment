@@ -115,7 +115,8 @@ sbatch repeatmasker_lvar.sh
 
 ```
 
-Create urchin_seqfile.txt file with masked genomes.
+# Third Step: Create urchin_seqfile.txt file with masked genomes.
+
 the \* simbolizes the genomes are reference quality
 
 ```bash
@@ -137,6 +138,7 @@ nano urchin_seqfile.txt
 ```bash
 conda activate cactus
 module load ucsc
+mkdir urchins_wkdir
 
 nano cactus_fastas2hal.sh
 #!/usr/bin/env bash
