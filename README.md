@@ -167,7 +167,8 @@ nano cactus_hal2maf.sh
 #SBATCH -N 1
 #SBATCH --mem=4G
 for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 ; do
-hal2maf --noAncestors urchins2.hal $chr.urchins.maf --refGenome He --refSequence $chr 
+hal2maf --noAncestors urchins2.hal $chr.urchins.maf --refGenome He --refSequence $chr ;
+sed -ie 2d $chr.urchins.maf
 done
 
 
@@ -204,8 +205,7 @@ nano maf2fasta.sh
 #SBATCH --mail-user=alebesc@gmail.com
 #SBATCH -N 1
 for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY;
-do msa_split $chr.maf --refseq $chr.fa --gap-strip ANY -q --in-format MAF --features /your/test/directory/features/$chr.feat.bed --for-features 
---out-root query/$chr; 
+do msa_split $chr.urchins.maf --refseq $chr.fa --gap-strip ANY -q --in-format MAF --features features/$chr.feat.bed --for-features --out-root query/$chr; 
 done
 
 
