@@ -15,7 +15,7 @@ nano repeatmodel_lvar.sh
 #!/usr/bin/env bash
 #SBATCH --mail-type=END
 #SBATCH --mail-user=alebesc@gmail.com
-#SBATCH --mem 40000
+#SBATCH --mem 70000
 BuildDatabase -name Lvar Lvar.fasta  # to build database
 RepeatModeler -database Lvar -pa 23
 
@@ -167,7 +167,7 @@ nano cactus_hal2maf.sh
 #SBATCH -N 1
 #SBATCH --mem=4G
 for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 ; do
-hal2maf urchins2.hal $chr.urchins.maf --refGenome He --refSequence $chr;
+hal2maf --noAncestors urchins2.hal $chr.urchins.maf --refGenome He --refSequence $chr 
 done
 
 
