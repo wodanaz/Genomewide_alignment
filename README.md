@@ -120,14 +120,13 @@ the \* simbolizes the genomes are reference quality
 
 ```bash
 nano urchin_seqfile.txt
-  # Sequence data for progressive alignment of 4 genomes
-  # human, chimp and gorilla are flagged as good assemblies.
-  # since orang isn't, it will not be used as an outgroup species.
- (((human:0.006,chimp:0.006667):0.0022,gorilla:0.008825):0.0096,orang:0.01831);
- *human /data/genomes/human/human.fa
- *chimp /data/genomes/chimp/
- *gorilla /data/genomes/gorilla/gorilla.fa
- orang /cluster/home/data/orang/
+  # Sequence data for progressive alignment of 3 genomes
+  # Lv, He and Ht are flagged as good assemblies.
+  # all will be used as an outgroup species.
+(Lv:1,(He:0.2,Ht:0.2):0.8);
+*He /data/wraycompute/alejo/PS_tests/Genome_alignments/masking_genomes/Hery.masked.fasta
+*Ht /data/wraycompute/alejo/PS_tests/Genome_alignments/masking_genomes/Htub.masked.fasta
+*Lv /data/wraycompute/alejo/PS_tests/Genome_alignments/masking_genomes/Lvar.masked.fasta
 
 
 ```
