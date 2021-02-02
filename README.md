@@ -157,9 +157,7 @@ sbatch cactus_fastas2hal.sh
 
 ```
 
-To extract fasta files from a feature bed file:
-
-1. we need to convert HAL to MAF for each chromosome
+Next, we need to convert HAL to MAF for each chromosome:
 
 
 ```bash
@@ -171,9 +169,9 @@ nano cactus_hal2maf.sh
 #SBATCH -N 1
 #SBATCH --mem=4G
 for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 ; do
-hal2maf --noAncestors urchins2.hal $chr.urchins.maf --refGenome He --refSequence $chr ;
-sed -ie 2d $chr.urchins.maf
+hal2maf --noAncestors urchins.hal $chr.urchins.maf --refGenome He --refSequence $chr
 done
+
 
 
 sbatch cactus_hal2maf.sh
@@ -181,9 +179,10 @@ sbatch cactus_hal2maf.sh
 ```
 
 
-2. we need to extract fasta using msa_split
+To extract features, we need to extract fasta using msa_split but first we need to proceess a bed file into feature data per chromosome
 
-First, create features
+To create features
+
 ```bash
 mkdir features
 for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 ; 
@@ -191,7 +190,7 @@ for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 
 done
 ```
 
-Second, use msa_split to extraxt fasta files
+Use msa_split to extract fasta files using the genome of reference.
 
 ```bash
 
