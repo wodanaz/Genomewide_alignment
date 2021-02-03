@@ -1,8 +1,8 @@
-# Genomewide_alignment
+# Genomewide alignment of high quality genomes (using sea urchins as example)
 I will use Cactus to create a genome wide alignment
 
 
-First, the genomes to align should be soft masked with RepeatMasker.
+# First Step: Create an index/database and model repeat families of each genome with RepeatModeler
 
 
 ```bash
@@ -62,7 +62,7 @@ sacct -j ID --format=JobID,JobName,ReqMem,MaxRSS,Elapsed  # RAM requested/used!!
 
 ```
 
-# Second Step: Masking genome with RepeatMasker using output from RepeatModeler.
+# Second Step: Soft-masking genomes with RepeatMasker using output from RepeatModeler.
 
 ```bash
 
