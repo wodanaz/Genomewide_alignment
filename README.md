@@ -32,7 +32,6 @@ nano repeatmodel_htub.sh
 #SBATCH --mail-type=END
 #SBATCH --mail-user=alebesc@gmail.com
 #SBATCH --mem 35000
-#conda activate repeatmasker
 BuildDatabase -name Htub Htub.fasta  # to build database
 RepeatModeler -database Htub -pa 23
 
@@ -46,7 +45,6 @@ nano repeatmodel_hery.sh
 #SBATCH --mail-type=END
 #SBATCH --mail-user=alebesc@gmail.com
 #SBATCH --mem 35000
-conda activate repeatmasker
 BuildDatabase -name Hery Hery.fasta  # to build database
 RepeatModeler -database Hery -pa 23
 
