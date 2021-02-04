@@ -141,7 +141,7 @@ mkdir urchins_wkdir
 
 nano cactus_fastas2hal.sh
 #!/usr/bin/env bash
-#SBATCH -J maker_male
+#SBATCH -J cactus_alignment
 #SBATCH --mail-type=END
 #SBATCH --mail-user=alebesc@gmail.com
 #SBATCH -N 4
@@ -167,7 +167,7 @@ nano cactus_hal2maf.sh
 #SBATCH -N 1
 #SBATCH --mem=4G
 for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 ; do
-hal2maf --noAncestors urchins.hal $chr.urchins.maf --refGenome He --refSequence $chr
+hal2maf --noAncestors --noDupes urchins.hal $chr.urchins.maf --refGenome He --refSequence $chr
 done
 
 
@@ -212,10 +212,10 @@ nano maf2fasta.sh
 #SBATCH --mail-type=END
 #SBATCH --mail-user=alebesc@gmail.com
 #SBATCH -N 1
-for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY;
-do msa_split $chr.urchins.maf --refseq $chr.fa --gap-strip ANY -q --in-format MAF --features features/$chr.feat.bed --for-features --out-root query/$chr; 
+for file in chr*urchins.maf;  do root=`basename $file .urchins.maf`; maf_parse $file --seqs Lv,Ht,He >  $root.noAnc.maf; done
+for chr in chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21;
+do msa_split $chr.noAnc.maf --refseq $chr.fa --gap-strip ANY -q --in-format MAF --features features/$chr.feat.bed --for-features --out-root query/$chr;
 done
-
 
 
 sbatch maf2fasta.sh
