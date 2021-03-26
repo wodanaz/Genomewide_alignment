@@ -1,5 +1,5 @@
 # Genomewide alignment of high quality genomes (using sea urchins as example)
-I will use Cactus to create a genome wide alignment
+To use Cactus to create a genome wide alignment
 
 
 # First Step: Create an index/database and model repeat families of each genome with RepeatModeler
