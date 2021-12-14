@@ -54,6 +54,22 @@ RepeatModeler -database Hery -pa 23
 
 sbatch repeatmodel_hery.sh 
 
+####################### E. luc
+
+nano repeatmodel_eluc.sh 
+#!/usr/bin/env bash
+#SBATCH --mail-type=END
+#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mem 35000
+BuildDatabase -name Eluc Eluc.fasta  # to build database
+RepeatModeler -database Eluc -pa 23
+
+
+
+# run
+
+sbatch repeatmodel_hery.sh 
+
 
 #############################
 # to check the memory allowance 
@@ -109,6 +125,25 @@ RepeatMasker -engine ncbi -pa 23 -s -lib Lvar-families.fa -gff -dir Lvar_mask_cu
 # Run
 
 sbatch repeatmasker_lvar.sh
+
+########################## E. luc
+
+mkdir Eluc_mask_custom
+
+nano repeatmasker_eluc.sh
+#!/usr/bin/env bash
+#SBATCH --mail-type=END
+#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mem 6G
+#SBATCH --cpus-per-task=23
+RepeatMasker -engine ncbi -pa 23 -s -lib Eluc-families.fa -gff -dir Eluc_mask_custom -xsmall Eluc.fasta
+
+
+# Run
+
+sbatch repeatmasker_eluc.sh
+
+
 
 
 ```
