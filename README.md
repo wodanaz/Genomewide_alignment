@@ -13,8 +13,9 @@ conda activate repeatmasker
 
 nano repeatmodel_lvar.sh
 #!/usr/bin/env bash
-#SBATCH --mail-type=END
-#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mail-user=ab620@duke.edu
+#SBATCH --mail-type=END,FAIL
+cd /data/wraycompute/alejo/newgenomes
 #SBATCH --mem 70000
 BuildDatabase -name Lvar Lvar.fasta  # to build database
 RepeatModeler -database Lvar -pa 23
@@ -29,8 +30,9 @@ sbatch repeatmodel_lvar.sh
 
 nano repeatmodel_htub.sh
 #!/usr/bin/env bash
-#SBATCH --mail-type=END
-#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mail-user=ab620@duke.edu
+#SBATCH --mail-type=END,FAIL
+cd /data/wraycompute/alejo/newgenomes
 #SBATCH --mem 35000
 BuildDatabase -name Htub Htub.fasta  # to build database
 RepeatModeler -database Htub -pa 23
@@ -42,8 +44,9 @@ sbatch repeatmodel_htub.sh
 
 nano repeatmodel_hery.sh 
 #!/usr/bin/env bash
-#SBATCH --mail-type=END
-#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mail-user=ab620@duke.edu
+#SBATCH --mail-type=END,FAIL
+cd /data/wraycompute/alejo/newgenomes
 #SBATCH --mem 35000
 BuildDatabase -name Hery Hery.fasta  # to build database
 RepeatModeler -database Hery -pa 23
@@ -58,8 +61,9 @@ sbatch repeatmodel_hery.sh
 
 nano repeatmodel_eluc.sh 
 #!/usr/bin/env bash
-#SBATCH --mail-type=END
-#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mail-user=ab620@duke.edu
+#SBATCH --mail-type=END,FAIL
+cd /data/wraycompute/alejo/newgenomes
 #SBATCH --mem 35000
 BuildDatabase -name Eluc Eluc.fasta  # to build database
 RepeatModeler -database Eluc -pa 23
@@ -89,8 +93,9 @@ mkdir Hery_mask_custom
 
 nano repeatmasker_hery.sh
 #!/usr/bin/env bash
-#SBATCH --mail-type=END
-#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mail-user=ab620@duke.edu
+#SBATCH --mail-type=END,FAIL
+cd /data/wraycompute/alejo/newgenomes
 RepeatMasker -engine ncbi -pa 23 -s -lib Hery-families.fa -gff -dir Hery_mask_custom -xsmall Hery.fasta
 
 # run
@@ -103,8 +108,9 @@ mkdir Htub_mask_custom
 
 nano repeatmasker_htub.sh
 #!/usr/bin/env bash
-#SBATCH --mail-type=END
-#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mail-user=ab620@duke.edu
+#SBATCH --mail-type=END,FAIL
+cd /data/wraycompute/alejo/newgenomes
 RepeatMasker -engine ncbi -pa 23 -s -lib Htub-families.fa -gff -dir Htub_mask_custom -xsmall Htub.fasta
 
 # Run
@@ -117,8 +123,9 @@ mkdir Lvar_mask_custom
 
 nano repeatmasker_lvar.sh
 #!/usr/bin/env bash
-#SBATCH --mail-type=END
-#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mail-user=ab620@duke.edu
+#SBATCH --mail-type=END,FAIL
+cd /data/wraycompute/alejo/newgenomes
 RepeatMasker -engine ncbi -pa 23 -s -lib Lvar-families.fa -gff -dir Lvar_mask_custom -xsmall Lvar.fasta
 
 
@@ -132,8 +139,9 @@ mkdir Eluc_mask_custom
 
 nano repeatmasker_eluc.sh
 #!/usr/bin/env bash
-#SBATCH --mail-type=END
-#SBATCH --mail-user=alebesc@gmail.com
+#SBATCH --mail-user=ab620@duke.edu
+#SBATCH --mail-type=END,FAIL
+cd /data/wraycompute/alejo/newgenomes
 #SBATCH --mem 6G
 #SBATCH --cpus-per-task=23
 RepeatMasker -engine ncbi -pa 23 -s -lib Eluc-families.fa -gff -dir Eluc_mask_custom -xsmall Eluc.fasta
@@ -170,8 +178,8 @@ nano urchin_seqfile.txt
 
 
 ```bash
-conda activate cactus
-module load ucsc
+source cactus_env/bin/activate
+
 mkdir urchins_wkdir
 
 nano cactus_fastas2hal.sh
