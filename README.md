@@ -15,8 +15,8 @@ nano repeatmodel_lvar.sh
 #!/usr/bin/env bash
 #SBATCH --mail-user=ab620@duke.edu
 #SBATCH --mail-type=END,FAIL
-cd /data/wraycompute/alejo/newgenomes
 #SBATCH --mem 70000
+cd /data/wraycompute/alejo/newgenomes
 BuildDatabase -name Lvar Lvar.fasta  # to build database
 RepeatModeler -database Lvar -pa 23
 
@@ -32,8 +32,8 @@ nano repeatmodel_htub.sh
 #!/usr/bin/env bash
 #SBATCH --mail-user=ab620@duke.edu
 #SBATCH --mail-type=END,FAIL
-cd /data/wraycompute/alejo/newgenomes
 #SBATCH --mem 35000
+cd /data/wraycompute/alejo/newgenomes
 BuildDatabase -name Htub Htub.fasta  # to build database
 RepeatModeler -database Htub -pa 23
 
@@ -46,8 +46,8 @@ nano repeatmodel_hery.sh
 #!/usr/bin/env bash
 #SBATCH --mail-user=ab620@duke.edu
 #SBATCH --mail-type=END,FAIL
-cd /data/wraycompute/alejo/newgenomes
 #SBATCH --mem 35000
+cd /data/wraycompute/alejo/newgenomes
 BuildDatabase -name Hery Hery.fasta  # to build database
 RepeatModeler -database Hery -pa 23
 
