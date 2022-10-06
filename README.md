@@ -63,8 +63,8 @@ nano repeatmodel_eluc.sh
 #!/usr/bin/env bash
 #SBATCH --mail-user=ab620@duke.edu
 #SBATCH --mail-type=END,FAIL
-cd /data/wraycompute/alejo/newgenomes
 #SBATCH --mem 35000
+cd /data/wraycompute/alejo/newgenomes
 BuildDatabase -name Eluc Eluc.fasta  # to build database
 RepeatModeler -database Eluc -pa 23
 
